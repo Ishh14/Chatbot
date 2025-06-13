@@ -5,7 +5,6 @@ import { SIMILARITY_THRESHOLD } from "../../utils/constants"; // Path adjusted
 import "./Chatbot.css";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
 import KNOWLEDGE_BASE_DATA from "../../data/knowledgeBase.json";
-
 const ChatbotComponent = () => {
   const [messages, setMessages] = useState([
     { text: KNOWLEDGE_BASE_DATA.greeting.response, sender: "bot" },
@@ -18,7 +17,6 @@ const ChatbotComponent = () => {
   const [isKnowledgeBaseLoading, setIsKnowledgeBaseLoading] = useState(true);
   const isOnline = useOnlineStatus();
   const [isChatOpen, setIsChatOpen] = useState(false);
-
   // Preparing the knowledge base data
   useEffect(() => {
     const prepareKB = async () => {
@@ -129,7 +127,6 @@ const ChatbotComponent = () => {
       handleSendMessage();
     }
   };
-
   const toggleChat = () => {
     setIsChatOpen((prev) => !prev);
   };
@@ -151,7 +148,7 @@ const ChatbotComponent = () => {
           <>
             <div className="chatbot-header">
               <span role="img" aria-label="Chatbot icon">
-                🤖
+               🤖
               </span>
               <h2>Educational Chatbot</h2>
               <button className="chatbot-close-button" onClick={toggleChat}>
@@ -168,7 +165,7 @@ const ChatbotComponent = () => {
             )}
             {!isOnline && (
               <p className="chatbot-message offline-message">
-                🚫: You are currently offline. Please check your internet
+                :no_entry_sign:: You are currently offline. Please check your internet
                 connection.
               </p>
             )}
@@ -176,17 +173,17 @@ const ChatbotComponent = () => {
               {messages.map((message, index) => (
                 <div key={index} className={`message-row ${message.sender}`}>
                   {message.sender === "bot" && (
-                    <div className="avatar bot-avatar">🤖</div>
+                    <div className="avatar bot-avatar">:robot_face:</div>
                   )}
                   <p className={`${message.sender}-message`}>{message.text}</p>
                   {message.sender === "user" && (
-                    <div className="avatar user-avatar">👤</div>
+                    <div className="avatar user-avatar">:bust_in_silhouette:</div>
                   )}
                 </div>
               ))}
               {loading && (
                 <div className="message-row bot">
-                  <div className="avatar bot-avatar">🤖</div>
+                  <div className="avatar bot-avatar">:robot_face:</div>
                   <p className="bot-message loading-indicator">Typing...</p>
                 </div>
               )}
